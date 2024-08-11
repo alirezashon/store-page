@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { ProductInterface } from '../interfaces'
 import 'react-lazy-load-image-component/src/effects/blur.css'
@@ -9,14 +9,21 @@ interface Props {
 }
 
 const Card: React.FC<Props> = ({ product }) => {
+  const [productover, setProductover] = useState<number | null>(null)
+
   const calculatedFirstPrice = (
     product.price /
     (1 - product.discountPercentage / 100)
   ).toFixed(2)
 
   return (
-    <div className='card text-center shadow-sm' style={{ cursor: 'pointer' }}
-    onClick={()=>window.open(`/product/${product.id}`)}>
+    <div
+      className='card text-center shadow-sm'
+      style={{ cursor: 'pointer' }}
+      onMouseOver={() => setProductover(product.id)}
+      onMouseLeave={() => setProductover(null)}
+      onClick={() => window.open(`/product/${product.id}`)}
+    >
       <div className='position-relative overflow-hidden rounded'>
         <LazyLoadImage
           className='card-img-top rounded'
@@ -36,6 +43,9 @@ const Card: React.FC<Props> = ({ product }) => {
           starSpacing='2px'
           name='rating'
         />
+        {productover === product.id && (
+          <div className={'productDescription'}>{product.description}</div>
+        )}
         <div className='d-flex justify-content-center align-items-center mt-2'>
           <p
             className='text-muted text-decoration-line-through me-2'

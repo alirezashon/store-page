@@ -1,0 +1,29 @@
+.placeholder-card {
+  background: #f0f0f0;
+  border-radius: 1vh;
+  height: 100%;
+}
+.placeholder-img {
+  background: #ddd;
+  height: 28vh;
+ }
+.placeholder-body {
+  padding: 1rem;
+}
+.placeholder-title,
+.placeholder-rating,
+.placeholder-price {
+  background: #ddd;
+  height: 1.5rem;
+  margin: 0.5rem 0;
+  border-radius: 1vh;
+}
+.placeholder-title {
+  width: 60%;
+}
+.placeholder-rating {
+  width: 40%;
+}
+.placeholder-price {
+  width: 50%;
+}
