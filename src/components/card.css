@@ -1,0 +1,25 @@
+.card {
+    max-height: 350px; 
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .card-title {
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+  
+  .card-title:hover {
+    content: attr(data-full-title); 
+    white-space: inherit;
+    background-color: white;
+    color: rgb(217, 49, 49);
+    padding: 0.5rem;
+    white-space: nowrap;
+    z-index: 10;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  

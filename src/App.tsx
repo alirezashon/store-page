@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Card from './components/Card'
+import './App.css'
+import { ProductInterface } from './interfaces'
+import { useEffect, useState } from 'react'
 
-function App() {
+const App = () => {
+  const [data, setData] = useState<ProductInterface[]>([])
+  const fetchData = async () => {
+    const response = await fetch('https://dummyjson.com/products')
+    const result = await response.json()
+    console.log(response)
+    setData(result.products)
+  }
+  useEffect(() => {
+    if (data.length === 0) {
+      fetchData()
+    }
+  }, [data])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <div className='container'>
+        <div className='row'>
+          {data.map((product) => (
+            <div
+              key={product.id}
+              className='col-12 col-sm-6 col-md-4 col-lg-3 mb-4'
+            >
+              <Card product={product} />
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
